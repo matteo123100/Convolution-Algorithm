@@ -1,0 +1,73 @@
+﻿  Compiling CUDA source file kernelAsync.cu...
+  
+  C:\Users\Francesco\source\repos\CudaExe1\CudaExe1>"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.4\bin\nvcc.exe" -gencode=arch=compute_52,code=\"sm_52,compute_52\" --use-local-env -ccbin "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.39.33519\bin\HostX64\x64" -x cu   -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.4\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.4\include"     --keep-dir x64\Release  -maxrregcount=0   --machine 64 --compile -cudart static    -DWIN32 -DWIN64 -DNDEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /O2 /FS   /MD " -Xcompiler "/Fdx64\Release\vc143.pdb" -o C:\Users\Francesco\source\repos\CudaExe1\CudaExe1\x64\Release\kernelAsync.cu.obj "C:\Users\Francesco\source\repos\CudaExe1\CudaExe1\kernelAsync.cu" 
+C:\Users\Francesco\source\repos\CudaExe1\CudaExe1\kernelAsync.cu(86): warning #20091-D: a __device__ variable "d_input" cannot be directly read in a host function
+        cudaMemcpyAsync(d_input, input, 4320 * 7680 * sizeof(int), cudaMemcpyHostToDevice, stream1);
+                        ^
+  
+  Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
+  
+C:\Users\Francesco\source\repos\CudaExe1\CudaExe1\kernelAsync.cu(105): warning #20091-D: a __device__ variable "d_input" cannot be directly read in a host function
+        cudaMemcpy(d_input, input, (4320/2 + 2) * (7680/2 + 2) * sizeof(int), cudaMemcpyHostToDevice);
+                   ^
+  
+C:\Users\Francesco\source\repos\CudaExe1\CudaExe1\kernelAsync.cu(107): warning #20091-D: a __device__ variable "d_input" cannot be directly read in a host function
+        convolution2DKernel << <dimGrid, dimBlock >> > (d_input, d_output);
+                                                        ^
+  
+C:\Users\Francesco\source\repos\CudaExe1\CudaExe1\kernelAsync.cu(107): warning #20091-D: a __device__ variable "d_output" cannot be directly read in a host function
+        convolution2DKernel << <dimGrid, dimBlock >> > (d_input, d_output);
+                                                                 ^
+  
+C:\Users\Francesco\source\repos\CudaExe1\CudaExe1\kernelAsync.cu(131): warning #20091-D: a __device__ variable "d_input" cannot be directly read in a host function
+                cudaMemcpyAsync(&d_input[offset], &input[offset], size, cudaMemcpyHostToDevice, stream1);
+                                 ^
+  
+C:\Users\Francesco\source\repos\CudaExe1\CudaExe1\kernelAsync.cu(138): warning #20091-D: a __device__ variable "d_input" cannot be directly read in a host function
+                convolution2DKernel << <dimGrid, dimBlock, 0, stream1 >> > (d_input, d_output);
+                                                                            ^
+  
+C:\Users\Francesco\source\repos\CudaExe1\CudaExe1\kernelAsync.cu(138): warning #20091-D: a __device__ variable "d_output" cannot be directly read in a host function
+                convolution2DKernel << <dimGrid, dimBlock, 0, stream1 >> > (d_input, d_output);
+                                                                                     ^
+  
+C:\Users\Francesco\source\repos\CudaExe1\CudaExe1\kernelAsync.cu(141): warning #20091-D: a __device__ variable "d_output" cannot be directly read in a host function
+                cudaMemcpyAsync(&output[offset], &d_output[offset], size, cudaMemcpyDeviceToHost, stream1);
+                                                  ^
+  
+C:\Users\Francesco\source\repos\CudaExe1\CudaExe1\kernelAsync.cu(150): warning #20091-D: a __device__ variable "d_output" cannot be directly read in a host function
+        cudaMemcpyAsync(output, d_output, (4320 - 3 + 1) * (7680 - 3 + 1) * sizeof(int), cudaMemcpyDeviceToHost, stream2);
+                                ^
+  
+C:\Users\Francesco\source\repos\CudaExe1\CudaExe1\kernelAsync.cu(155): warning #20091-D: a __device__ variable "d_input" cannot be directly read in a host function
+        cudaFree(d_input);
+                 ^
+  
+C:\Users\Francesco\source\repos\CudaExe1\CudaExe1\kernelAsync.cu(157): warning #20091-D: a __device__ variable "d_output" cannot be directly read in a host function
+        cudaFree(d_output);
+                 ^
+  
+C:\Users\Francesco\source\repos\CudaExe1\CudaExe1\kernelAsync.cu(38): warning #177-D: variable "passo" was declared but never referenced
+                int passo = (i != 0) ? (4320 - 3) * i : 0;
+                    ^
+  
+  Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
+  
+C:\Users\Francesco\source\repos\CudaExe1\CudaExe1\kernelAsync.cu(127): warning #177-D: variable "offsetY" was declared but never referenced
+                int offsetY = i;
+                    ^
+  
+C:\Users\Francesco\source\repos\CudaExe1\CudaExe1\kernelAsync.cu(128): warning #177-D: variable "offsetX" was declared but never referenced
+                int offsetX = j;
+                    ^
+  
+  kernelAsync.cu
+  tmpxft_00004354_00000000-7_kernelAsync.cudafe1.cpp
+C:\Users\Francesco\source\repos\CudaExe1\CudaExe1\kernelAsync.cu(94): warning C4244: 'inizializzazione': conversione da 'float' a 'int'. Possibile perdita di dati.
+C:\Users\Francesco\source\repos\CudaExe1\CudaExe1\kernelAsync.cu(95): warning C4244: 'inizializzazione': conversione da 'float' a 'int'. Possibile perdita di dati.
+C:\Users\Francesco\source\repos\CudaExe1\CudaExe1\kernelAsync.cu(103): warning C4477: 'printf': con la stringa di formato '%d' è necessario un argomento di tipo 'int', ma il tipo dell'argomento variadic 1 è 'dim3'
+C:\Users\Francesco\source\repos\CudaExe1\CudaExe1\kernelAsync.cu(103): warning C4477: 'printf': con la stringa di formato '%d' è necessario un argomento di tipo 'int', ma il tipo dell'argomento variadic 2 è 'dim3'
+     Creazione della libreria C:\Users\Francesco\source\repos\CudaExe1\x64\Release\CudaExe1.lib e dell'oggetto C:\Users\Francesco\source\repos\CudaExe1\x64\Release\CudaExe1.exp
+LINK : warning LNK4098: la libreria predefinita 'LIBCMT' è in conflitto con l'utilizzo di altre librerie; usare /NODEFAULTLIB:libreria
+  LINK : è stata specificata l'opzione /LTCG ma non è richiesta la generazione del codice; rimuovere /LTCG dalla riga di comando del collegamento per migliorare le prestazioni del linker
+  CudaExe1.vcxproj -> C:\Users\Francesco\source\repos\CudaExe1\x64\Release\CudaExe1.exe
